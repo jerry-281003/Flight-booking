@@ -7,6 +7,9 @@ namespace FlightBooking5.Models
         [Key]
         public int flightId { get; set; }
 
+        [Required(ErrorMessage = "A airline is required to proceed!")]
+        public String Airline { get; set; }
+
         [Required(ErrorMessage = "An aircraft code is required to proceed!")]
         public string AircraftCode { get; set; }
 
@@ -29,18 +32,19 @@ namespace FlightBooking5.Models
         [Required(ErrorMessage = "A price is required to proceed!")]
         public double Price { get; set; }
 
-        [Required(ErrorMessage = "A price is required to proceed!")]
+        [Required(ErrorMessage = "A Departure Time is required to proceed!")]
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
         public DateTime DepartureTime { get; set; }
 
-        [Required(ErrorMessage = "A price is required to proceed!")]
+        [Required(ErrorMessage = "A Arrival Time is required to proceed!")]
         [DataType(DataType.Time)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh:mm}")]
         public DateTime ArrivalTime { get; set; }
 
         [Required(ErrorMessage = "A price is required to proceed!")]
         public String Class { get; set; }
+        
     }
 
 }

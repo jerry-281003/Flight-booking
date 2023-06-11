@@ -13,6 +13,19 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="Airline" class="control-label"></label>
+
+                <select asp-for="Airline" class="form-control">
+
+
+                    <option value="Vietnam Airway">Vietnam Airway</option>
+                    <option value="BamBo Airway">BamBo Airway</option>
+                    <option value="VietJet Air"> VietJet Air</option>
+                </select>
+                <span asp-validation-for="Airline" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
                 <label asp-for="AircraftCode" class="control-label"></label>
                 <input asp-for="AircraftCode" class="form-control" />
                 <span asp-validation-for="AircraftCode" class="text-danger"></span>

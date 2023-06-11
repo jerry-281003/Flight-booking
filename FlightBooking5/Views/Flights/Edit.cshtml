@@ -60,8 +60,27 @@
             </div>
             <div class="form-group">
                 <label asp-for="Class" class="control-label"></label>
-                <select asp-for="Class" class="form-control"></select>
+
+                <select asp-for="Class" class="form-control">
+
+
+                    <option value="First Class">First Class</option>
+                    <option value="Economy">Economy</option>
+                    <option value="Business">Business</option>
+                </select>
                 <span asp-validation-for="Class" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Airline" class="control-label"></label>
+
+                <select asp-for="Airline" class="form-control">
+
+
+                    <option value="Vietnam Airway">Vietnam Airway</option>
+                    <option value="BamBo Airway">BamBo Airway</option>
+                    <option value="VietJet Air"> VietJet Air</option>
+                </select>
+                <span asp-validation-for="Airline" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

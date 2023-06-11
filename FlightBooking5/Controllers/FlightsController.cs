@@ -59,7 +59,7 @@ namespace FlightBooking5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("flightId,AircraftCode,AircraftType,DepartureCountry,ArrivalCountry,DepartureDate,FlightStatus,Price,DepartureTime,ArrivalTime,Class")] Flight flight)
+        public async Task<IActionResult> Create([Bind("flightId,AircraftCode,AircraftType,DepartureCountry,ArrivalCountry,DepartureDate,FlightStatus,Price,DepartureTime,ArrivalTime,Class,Airline")] Flight flight)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace FlightBooking5.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("flightId,AircraftCode,AircraftType,DepartureCountry,ArrivalCountry,DepartureDate,FlightStatus,Price,DepartureTime,ArrivalTime,Class")] Flight flight)
+        public async Task<IActionResult> Edit(int id, [Bind("flightId,AircraftCode,AircraftType,DepartureCountry,ArrivalCountry,DepartureDate,FlightStatus,Price,DepartureTime,ArrivalTime,Class,Airline")] Flight flight)
         {
             if (id != flight.flightId)
             {

@@ -43,7 +43,8 @@ namespace FlightBooking5.Migrations
                     Price = table.Column<double>(type: "float", nullable: false),
                     DepartureTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ArrivalTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Class = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Class = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Airline= table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
