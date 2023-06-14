@@ -13,5 +13,6 @@ namespace FlightBooking5.Data
         public DbSet<FlightBooking5.Models.Customer> Customer { get; set; } = default!;
 
         public DbSet<FlightBooking5.Models.Flight>? Flight { get; set; }
-    }
+		public DbSet<FlightBooking5.Models.PaymentDetails> PaymentDetails { get; set; }
+	}
 }

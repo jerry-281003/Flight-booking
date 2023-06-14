@@ -1,10 +1,15 @@
 ﻿using FlightBooking5.Data;
 using FlightBooking5.Infrastructure;
 using FlightBooking5.Models;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NuGet.Protocol.Core.Types;
+using PayPal.Api;
+using System.Collections.Generic;
+using System.Configuration;
 
 namespace FlightBooking5.Controllers
 {
@@ -12,11 +17,19 @@ namespace FlightBooking5.Controllers
     {
         public Cart? Cart { get; set; }
         private readonly FlightBooking5Context _context;
-        public CartController(FlightBooking5Context context)
+        private IConfiguration _configuration;
+        public CartController(FlightBooking5Context context, IConfiguration IConfiguration)
         {
             _context = context;
+            _configuration = IConfiguration;
         }
-        public IActionResult AddToCart(int flightId)
+		public IActionResult ViewCart()
+		{
+			Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+			return View("cart", Cart);
+		}
+
+		public IActionResult AddToCart(int flightId)
         {
             Flight? flight = _context.Flight
             .FirstOrDefault(f => f.flightId == flightId);
@@ -27,7 +40,7 @@ namespace FlightBooking5.Controllers
                 HttpContext.Session.SetJson("cart", Cart);
             }
 
-            return View("cart",Cart);
+            return View("cart", Cart);
         }
         public IActionResult RemoveFromCart(int flightId)
         {
@@ -42,5 +55,8 @@ namespace FlightBooking5.Controllers
 
             return View("cart", Cart);
         }
+
     }
 }
+   
+

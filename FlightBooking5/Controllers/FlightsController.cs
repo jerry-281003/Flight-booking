@@ -1,5 +1,6 @@
 ﻿using FlightBooking5.Data;
 using FlightBooking5.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -47,7 +48,7 @@ namespace FlightBooking5.Controllers
 
             return View(flight);
         }
-
+ 
         // GET: Flights/Create
         public IActionResult Create()
         {
@@ -142,6 +143,7 @@ namespace FlightBooking5.Controllers
         // POST: Flights/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+       
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Flight == null)
