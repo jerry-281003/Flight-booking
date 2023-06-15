@@ -65,10 +65,15 @@ namespace FlightBooking5.Controllers
 			var paymentData = new PaymentDetails
 			{
 				PaymentId = paymentId,
-				Amount  = executedPayment.transactions.FirstOrDefault().amount.total,
+                FirstName = executedPayment.payer.payer_info.first_name,
+                LastName = executedPayment.payer.payer_info.last_name,
+                Email = executedPayment.payer.payer_info.email,
+                PhoneNumber = executedPayment.payer.payer_info.phone,
+                Amount  = executedPayment.transactions.FirstOrDefault().amount.total,
 				Status = executedPayment.state,
-				PaymentDate = DateTime.Now
-			};
+				PaymentDate = DateTime.Now,
+               
+            };
 			// Lưu paymentData vào cơ sở dữ liệu
 			_context.PaymentDetails.Add(paymentData);
 			_context.SaveChanges();

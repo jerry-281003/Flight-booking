@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using FlightBooking5.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace FlightBooking5.Data
@@ -14,5 +15,6 @@ namespace FlightBooking5.Data
 
         public DbSet<FlightBooking5.Models.Flight>? Flight { get; set; }
 		public DbSet<FlightBooking5.Models.PaymentDetails> PaymentDetails { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; } 
 	}
 }

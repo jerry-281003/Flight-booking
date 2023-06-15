@@ -1,5 +1,5 @@
-﻿@model IEnumerable<FlightBooking5.Models.Flight>
-
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<IdentityRole>
 <html lang="en">
 
 <head>
@@ -40,7 +40,7 @@
 						</a>
 					</li>
 
-					
+
 					<li class="sidebar-item active">
 						<a class="sidebar-link" href="/Admin/AddFlight">
 							<i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
@@ -56,15 +56,15 @@
 							<i class="align-middle" data-feather="book"></i> <span class="align-middle">PaymentDetails</span>
 						</a>
 					</li>
-				
+
 				</ul>
 
-				
+
 			</div>
 		</nav>
 
 		<div class="main">
-			
+
 
 			<main class="content">
 				<div class="container-fluid">
@@ -72,12 +72,12 @@
 					<h1 class="h3 mb-3">Blank Page</h1>
 
 					<div class="row">
-						<div class="col-12" >
-							<div class="card" >
+						<div class="col-12">
+							<div class="card">
 								<div class="card-header">
 									<h5 class="card-title mb-0">Empty card</h5>
 								</div>
-								<div class="card-body" >
+								<div class="card-body">
 									<style>
 										.bordered-table {
 											border-collapse: collapse; /* Hợp nhất đường viền ô trong bảng */
@@ -91,45 +91,18 @@
 											}
 									</style>
 									<p>
-										
-										<a class="nav-link text-dark" asp-area="" asp-controller="Flights" asp-action="Create">Create New</a>
+										<a class="nav-link text-dark" asp-area="" asp-controller="AppRole" asp-action="Create">Create New</a>
 									</p>
-									<table class="bordered-table">
+									<table class="table">
 										<thead>
 											<tr>
 												<th>
-													@Html.DisplayNameFor(model => model.AircraftCode)
+													@Html.DisplayNameFor(model => model.Id)
 												</th>
 												<th>
-													@Html.DisplayNameFor(model => model.AircraftType)
+													@Html.DisplayNameFor(model => model.Name)
 												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.DepartureCountry)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.ArrivalCountry)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.DepartureDate)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.FlightStatus)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.Price)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.DepartureTime)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.ArrivalTime)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.Class)
-												</th>
-												<th>
-													@Html.DisplayNameFor(model => model.Airline)
-												</th>
+
 												<th></th>
 											</tr>
 										</thead>
@@ -138,43 +111,12 @@
 											{
 												<tr>
 													<td>
-														@Html.DisplayFor(modelItem => item.AircraftCode)
+														@Html.DisplayFor(modelItem => item.Id)
 													</td>
 													<td>
-														@Html.DisplayFor(modelItem => item.AircraftType)
+														@Html.DisplayFor(modelItem => item.Name)
 													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.DepartureCountry)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.ArrivalCountry)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => @item.DepartureDate)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.FlightStatus)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.Price)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.DepartureTime)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.ArrivalTime)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.Class)
-													</td>
-													<td>
-														@Html.DisplayFor(modelItem => item.Airline)
-													</td>
-													<td>
-														<a asp-controller="Flights" asp-action="Edit" asp-route-id="@item.flightId">Edit</a>
-														<a asp-controller="Flights" asp-action="Details" asp-route-id="@item.flightId">Details</a>
-														<a asp-controller="Flights" asp-action="Delete" asp-route-id="@item.flightId">Delete</a>
-													</td>
+
 												</tr>
 											}
 										</tbody>
@@ -189,7 +131,7 @@
 				</div>
 			</main>
 
-			
+
 		</div>
 	</div>
 

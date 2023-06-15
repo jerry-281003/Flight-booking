@@ -5,8 +5,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FlightBooking5Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("FlightBooking5Context") ?? throw new InvalidOperationException("Connection string 'FlightBooking5Context' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<FlightBooking5Context>();
+builder.Services.AddDefaultIdentity<IdentityUser>().AddDefaultTokenProviders()
+    .AddRoles<IdentityRole>()
+	.AddEntityFrameworkStores<FlightBooking5Context>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
