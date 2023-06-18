@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<FlightBooking5.Models.Employee>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,10 +29,10 @@
 				<a class="sidebar-brand" href="index.html">
 					<span class="align-middle">AdminKit</span>
 				</a>
-				
+
 				<ul class="sidebar-nav">
 					<li class="sidebar-header">
-						Admin Manager 
+						Pages
 					</li>
 
 					<li class="sidebar-item active">
@@ -60,17 +61,9 @@
 							<i class="align-middle" data-feather="book"></i> <span class="align-middle">EmployeeAssignment</span>
 						</a>
 					</li>
-					<li class="sidebar-header">
-						Employee
-					</li>
-					<li class="sidebar-item">
-						<a class="sidebar-link" href="/Admin/EmployeeSchedule">
-							<i class="align-middle" data-feather="book"></i> <span class="align-middle">EmployeeAssignment</span>
-						</a>
-					</li>
 				</ul>
 
-				
+
 			</div>
 		</nav>
 
@@ -78,21 +71,54 @@
 			<nav class="navbar navbar-expand navbar-light navbar-bg">
 				<a class="sidebar-toggle js-sidebar-toggle">
 					<i class="hamburger align-self-center"></i>
-				</a>				
+				</a>
 			</nav>
 
 			<main class="content">
-				
+				<p>
+					<a asp-controller="Employees" asp-action="Create">Create New</a>
+				</p>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Name)
+							</th>
+							<th>
+								@Html.DisplayNameFor(model => model.flightId)
+							</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>
+									@Html.DisplayFor(modelItem => item.Name)
+								</td>
+								<td>
+									@Html.DisplayFor(modelItem => item.flightId)
+								</td>
+								<td>
+									<a asp-controller="Employees" asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+									<a asp-controller="Employees" asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
+									<a asp-controller="Employees" asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
 			</main>
 
-			
+
 		</div>
 	</div>
 
 	<script src="/js/app.js"></script>
 
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
 			var gradient = ctx.createLinearGradient(0, 0, 0, 225);
 			gradient.addColorStop(0, "rgba(215, 227, 244, 1)");
@@ -162,7 +188,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			// Pie chart
 			new Chart(document.getElementById("chartjs-dashboard-pie"), {
 				type: "pie",
@@ -190,7 +216,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			// Bar chart
 			new Chart(document.getElementById("chartjs-dashboard-bar"), {
 				type: "bar",
@@ -234,47 +260,47 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var markers = [{
-					coords: [31.230391, 121.473701],
-					name: "Shanghai"
-				},
-				{
-					coords: [28.704060, 77.102493],
-					name: "Delhi"
-				},
-				{
-					coords: [6.524379, 3.379206],
-					name: "Lagos"
-				},
-				{
-					coords: [35.689487, 139.691711],
-					name: "Tokyo"
-				},
-				{
-					coords: [23.129110, 113.264381],
-					name: "Guangzhou"
-				},
-				{
-					coords: [40.7127837, -74.0059413],
-					name: "New York"
-				},
-				{
-					coords: [34.052235, -118.243683],
-					name: "Los Angeles"
-				},
-				{
-					coords: [41.878113, -87.629799],
-					name: "Chicago"
-				},
-				{
-					coords: [51.507351, -0.127758],
-					name: "London"
-				},
-				{
-					coords: [40.416775, -3.703790],
-					name: "Madrid "
-				}
+				coords: [31.230391, 121.473701],
+				name: "Shanghai"
+			},
+			{
+				coords: [28.704060, 77.102493],
+				name: "Delhi"
+			},
+			{
+				coords: [6.524379, 3.379206],
+				name: "Lagos"
+			},
+			{
+				coords: [35.689487, 139.691711],
+				name: "Tokyo"
+			},
+			{
+				coords: [23.129110, 113.264381],
+				name: "Guangzhou"
+			},
+			{
+				coords: [40.7127837, -74.0059413],
+				name: "New York"
+			},
+			{
+				coords: [34.052235, -118.243683],
+				name: "Los Angeles"
+			},
+			{
+				coords: [41.878113, -87.629799],
+				name: "Chicago"
+			},
+			{
+				coords: [51.507351, -0.127758],
+				name: "London"
+			},
+			{
+				coords: [40.416775, -3.703790],
+				name: "Madrid "
+			}
 			];
 			var map = new jsVectorMap({
 				map: "world",
@@ -301,7 +327,7 @@
 		});
 	</script>
 	<script>
-		document.addEventListener("DOMContentLoaded", function() {
+		document.addEventListener("DOMContentLoaded", function () {
 			var date = new Date(Date.now() - 5 * 24 * 60 * 60 * 1000);
 			var defaultDate = date.getUTCFullYear() + "-" + (date.getUTCMonth() + 1) + "-" + date.getUTCDate();
 			document.getElementById("datetimepicker-dashboard").flatpickr({

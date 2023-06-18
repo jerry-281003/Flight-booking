@@ -66,7 +66,7 @@ namespace FlightBooking5.Controllers
             {
                 _context.Add(flight);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("AddFlight", "Admin");
             }
             return View(flight);
         }

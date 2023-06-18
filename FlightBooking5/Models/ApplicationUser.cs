@@ -16,5 +16,7 @@ namespace FlightBooking5.Models
 
         [Required(ErrorMessage = "Enter gender type")]
         public string Gender { get; set; }
+       
+       
     }
 }
