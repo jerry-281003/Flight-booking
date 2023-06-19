@@ -64,16 +64,12 @@ namespace FlightBooking5.Controllers
             return View("NotFound");
         }
 
+        //GET:Employees/ChangeRole
+       
 
 
-
-
-
-
-
-
-        // GET: Employees
-        public async Task<IActionResult> Index()
+		// GET: Employees
+		public async Task<IActionResult> Index()
         {
               return _context.Employee != null ? 
                           View(await _context.Employee.ToListAsync()) :
