@@ -28,8 +28,20 @@ namespace FlightBooking5.Controllers
 			Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
 			return View("cart", Cart);
 		}
+        public IActionResult UpdateCart(int flightId)
+        {
+            Flight? flight = _context.Flight
+            .FirstOrDefault(f => f.flightId == flightId);
+            if (flight != null)
+            {
+                Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
+                Cart.AddItem(flight, -1);
+                HttpContext.Session.SetJson("cart", Cart);
+            }
 
-		public IActionResult AddToCart(int flightId)
+            return View("cart", Cart);
+        }
+        public IActionResult AddToCart(int flightId)
         {
             Flight? flight = _context.Flight
             .FirstOrDefault(f => f.flightId == flightId);

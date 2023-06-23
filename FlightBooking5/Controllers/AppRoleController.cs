@@ -12,14 +12,16 @@ namespace FlightBooking5.Controllers
 			_roleManager = roleManager;
 
 		}
-		//list all roles
+        //list all roles
+        [Authorize(Roles = "Admin Manager")]
         public IActionResult Index()
 		{
 			var roles = _roleManager.Roles;
 			return View(roles);
 		}
 		[HttpGet]
-		public IActionResult Create()
+        [Authorize(Roles = "Admin Manager")]
+        public IActionResult Create()
 		{
 			
 			return View();

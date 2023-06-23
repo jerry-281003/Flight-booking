@@ -77,7 +77,7 @@ namespace FlightBooking5.Controllers
 			// Lưu paymentData vào cơ sở dữ liệu
 			_context.PaymentDetails.Add(paymentData);
 			_context.SaveChanges();
-			return View("PaymentSuccess");
+			return View("PaymentSuccess",paymentData);
         }
     }
 }

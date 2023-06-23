@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using FlightBooking5.Data;
 using FlightBooking5.Models;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FlightBooking5.Controllers
 {
@@ -23,13 +24,14 @@ namespace FlightBooking5.Controllers
         }
 
         // GET: ImageAds
+        [Authorize(Roles = "Admin Manager,Marketing")]
         public async Task<IActionResult> Index()
         {
-              return _context.ImageAd != null ? 
-                          View(await _context.ImageAd.ToListAsync()) :
-                          Problem("Entity set 'FlightBooking5Context.ImageAd'  is null.");
+                  return _context.ImageAd != null ? 
+                              View(await _context.ImageAd.ToListAsync()) :
+                              Problem("Entity set 'FlightBooking5Context.ImageAd'  is null.");
         }
-
+        [Authorize(Roles = "Admin Manager,Marketing")]
         // GET: ImageAds/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -47,7 +49,7 @@ namespace FlightBooking5.Controllers
 
             return View(imageAd);
         }
-
+        [Authorize(Roles = "Admin Manager,Marketing")]
         // GET: ImageAds/Create
         public IActionResult Create()
         {
@@ -87,11 +89,12 @@ namespace FlightBooking5.Controllers
                 };
                 _context.Add(entity);
                 await _context.SaveChangesAsync();
-                ViewBag.Message = "Upload successful.";
+                
+                return RedirectToAction("Ads", "Admin");
             }
             return View(imageAd);
         }
-
+        [Authorize(Roles = "Admin Manager,Marketing")]
         // GET: ImageAds/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -138,11 +141,11 @@ namespace FlightBooking5.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Ads", "Admin");
             }
             return View(imageAd);
         }
-
+        [Authorize(Roles = "Admin Manager,Marketing")]
         // GET: ImageAds/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

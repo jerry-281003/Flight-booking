@@ -34,8 +34,8 @@
                                     <div class="flight-card">
                                         <div class="flight-departure">
                                             <h3>Departure</h3>
-                                            <p class="country">@line.Flight.DepartureCountry)</p>
-                                            <p class="time">@line.Flight.DepartureTime</p>
+                                            <p class="country">@line.Flight.DepartureCountry</p>
+                                            <p class="time">@line.Flight.DepartureDate.ToShortDateString() @line.Flight.DepartureTime.ToShortTimeString()</p>
                                         </div>
                                         <div class="flight-logo">
                                             <img src="/img/planeicon1.png" alt="Flight Logo">
@@ -43,14 +43,10 @@
                                         <div class="flight-arrival">
                                             <h3>Arrival</h3>
                                             <p class="country">@line.Flight.ArrivalCountry</p>
-                                            <p class="time">@line.Flight.ArrivalTime</p>
+                                            <p class="time"> @line.Flight.DepartureDate.ToShortDateString() @line.Flight.ArrivalTime.ToShortTimeString()</p>
                                         </div>
                                         <div class="flight-details">
-                                            <div class="flight-info">
-                                                <p class="aircode">@line.Flight.AircraftType</p>
-                                                <p class="airtype">Aircode:@line.Flight.AircraftCode</p>
-                                                <p class="class">Class:@line.Flight.Class</p>
-                                            </div>
+                                            
                                             <div class="book-button-container">
                                                 <a href="/Cart/RemoveFromCart/?flightId=@line.Flight.flightId" class="book-button">Remove</a>
                                             </div>
@@ -58,6 +54,60 @@
                                                 <span> @line.Flight.Price</span>
                                             </div>
                                         </div>
+                                        <style>
+                                            .quantity-input {
+                                                display: flex;
+                                                align-items: center;
+                                            }
+
+                                                .quantity-input a {
+                                                    display: inline-block;
+                                                    width: 30px;
+                                                    height: 30px;
+                                                    text-align: center;
+                                                    line-height: 30px;
+                                                    text-decoration: none;
+                                                    background-color: #f0f0f0;
+                                                    color: #333;
+                                                    font-weight: bold;
+                                                    border-radius: 50%;
+                                                    margin: 0 5px;
+                                                }
+
+                                                .quantity-input span {
+                                                    font-weight: bold;
+                                                    font-size: 18px;
+                                                    margin: 0 10px;
+                                                }
+                                        </style>
+                                        
+                                       
+                                       
+                                    </div>
+                                    @if (@line.Quantity == 0)
+                                    {
+                                        <span>If you wan't delete click'</span>
+                                        <a href="/Cart/RemoveFromCart/?flightId=@line.Flight.flightId" class="book-button">Submit</a>
+                                    }
+                                    @if (@line.Quantity < 0)
+                                    {
+
+                                        <form id="myForm" asp-controller="Cart" asp-action="AddToCart" method="get">
+                                            <input type="hidden" name="flightId" value="@line.Flight.flightId">
+                                        </form>
+                                        <script>
+                                            document.addEventListener("DOMContentLoaded", function () {
+                                                var form = document.getElementById("myForm");
+                                                form.submit();
+                                            });
+                                        </script>
+                                    }
+
+                                    <span>Quantity:</span>
+                                    <div class="quantity-input">
+                                        <a href="/cart/UpdateCart/?flightId=@line.Flight.flightId" id="decrease-btn">-</a>
+                                        <span id="quantity-display">@line.Quantity</span>
+                                        <a href="/cart/AddToCart/?flightId=@line.Flight.flightId" id="increase-btn">+</a>
                                     </div>
                                 }
 
@@ -74,7 +124,7 @@
                    
                     </div>
 
-                    <p class="small mb-2">Card type</p>
+                    
                     <a href="#!" type="submit" class="text-white"><i
                         class="fab fa-cc-mastercard fa-2x me-2"></i></a>
                     <a href="#!" type="submit" class="text-white"><i
@@ -83,44 +133,14 @@
                         class="fab fa-cc-amex fa-2x me-2"></i></a>
                     <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
 
-                    <form class="mt-4">
-                      <div class="form-outline form-white mb-4">
-                          <input type="text" id="Email" class="form-control form-control-lg" siez="17"
-                          placeholder="Email!" />
-                          <label class="form-label" for="Email">Email!</label>
-                      </div>
-
-                      <div class="form-outline form-white mb-4">
-                            <input type="text" id="PhoneNumber" class="form-control form-control-lg" siez="17"
-                          placeholder="Phone Number" minlength="10" maxlength="12" />
-                          <label class="form-label" for="PhoneNumber">Phone Number</label>
-                      </div>
-
-                      <div class="row mb-4">
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="text" id="typeText" class="form-control form-control-lg"
-                              placeholder="First Name" size="7" id="exp" minlength="10" maxlength="10" />
-                              <label class="form-label" for="typeText">FirstName</label>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="form-outline form-white">
-                            <input type="text" id="typeText" class="form-control form-control-lg"
-                              placeholder="Last Name" size="1" minlength="10" maxlength="10" />
-                              <label class="form-label" for="LastName">LastName</label>
-                          </div>
-                        </div>
-                      </div>
-
-                    </form>
+                   
 
                     <hr class="my-4">
                     @foreach (var line in Model.Lines)
                     {
                         <div class="d-flex justify-content-between mb-4">
-                                                <p class="mb-2">Vé @line.Flight.DepartureCountry đến @line.Flight.ArrivalCountry</p>
-                            <p class="mb-2">@line.Flight.Price$</p>
+                                                <p class="mb-2">Vé @line.Flight.DepartureCountry đến @line.Flight.ArrivalCountry @line.Flight.DepartureDate.ToShortDateString() @line.Flight.DepartureTime.ToShortTimeString()</p>
+                                                <p class="mb-2">@(line.Flight.Price*line.Quantity)$</p>
                         </div>                    
                     
                     }

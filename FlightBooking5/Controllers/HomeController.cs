@@ -1,4 +1,5 @@
-﻿using FlightBooking5.Models;
+﻿using FlightBooking5.Data;
+using FlightBooking5.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,15 +8,21 @@ namespace FlightBooking5.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly FlightBooking5Context _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, FlightBooking5Context context)
         {
             _logger = logger;
+            _context = context;
         }
+        
 
+      
         public IActionResult Index()
         {
-            return View();
+            var imageAds = _context.ImageAd.ToList();
+            return View(imageAds);
+           
         }
 
         public IActionResult Privacy()

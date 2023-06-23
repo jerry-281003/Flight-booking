@@ -16,6 +16,7 @@ namespace FlightBooking5.Controllers
         }
 
         // GET: Flights
+        [Authorize(Roles = "Admin Manager")]
         public async Task<IActionResult> Index()
         {
             return _context.Flight != null ?
@@ -32,6 +33,7 @@ namespace FlightBooking5.Controllers
             return View(flights);
         }
         // GET: Flights/Details/5
+        [Authorize(Roles = "Admin Manager")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Flight == null)
@@ -48,7 +50,7 @@ namespace FlightBooking5.Controllers
 
             return View(flight);
         }
- 
+        [Authorize(Roles = "Admin Manager")]
         // GET: Flights/Create
         public IActionResult Create()
         {
@@ -72,6 +74,7 @@ namespace FlightBooking5.Controllers
         }
 
         // GET: Flights/Edit/5
+        [Authorize(Roles = "Admin Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Flight == null)
@@ -117,12 +120,13 @@ namespace FlightBooking5.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("AddFlight", "Admin");
             }
             return View(flight);
         }
 
         // GET: Flights/Delete/5
+        [Authorize(Roles = "Admin Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Flight == null)
@@ -157,7 +161,7 @@ namespace FlightBooking5.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("AddFlight", "Admin");
         }
 
         private bool FlightExists(int id)

@@ -15,8 +15,8 @@
             <div class="flight-card">
                 <div class="flight-departure">
                     <h3>Departure</h3>
-                    <p class="country">@flight.DepartureCountry)</p>
-                    <p class="time">@flight.DepartureTime</p>
+                    <p class="country">@flight.DepartureCountry</p>
+                    <p class="time">@flight.DepartureDate.ToShortDateString() @flight.DepartureTime.ToShortTimeString()</p>
                 </div>
                 <div class="flight-logo">
                     <img src="/img/planeicon1.png" alt="Flight Logo">
@@ -24,15 +24,16 @@
                 <div class="flight-arrival">
                     <h3>Arrival</h3>
                     <p class="country">@flight.ArrivalCountry</p>
-                    <p class="time" >@flight.ArrivalTime</p>
+                    <p class="time">@flight.DepartureDate.ToShortDateString() @flight.ArrivalTime.ToShortTimeString()</p>
                 </div>
                 <div class="flight-details">
                     <div class="flight-info">
                         <p class="aircode">@flight.AircraftType</p>
-                        <p class="airtype">Aircode:@flight.AircraftCode</p>
+                        <p class="airtype">@flight.Airline</p>
                         <p class="class">Class:@flight.Class</p>
                     </div>
                     <div class="book-button-container">
+                        <span >@flight.Price $</span>
                         <a href="/Cart/AddToCart/?flightId=@flight.flightId" class="book-button">Book Now</a>
                     </div>
                 </div>

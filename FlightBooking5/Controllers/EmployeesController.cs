@@ -65,17 +65,17 @@ namespace FlightBooking5.Controllers
         }
 
         //GET:Employees/ChangeRole
-       
 
 
-		// GET: Employees
-		public async Task<IActionResult> Index()
+        [Authorize(Roles = "Admin Manager")]
+        // GET: Employees
+        public async Task<IActionResult> Index()
         {
               return _context.Employee != null ? 
                           View(await _context.Employee.ToListAsync()) :
                           Problem("Entity set 'FlightBooking5Context.Employee'  is null.");
         }
-
+        [Authorize(Roles = "Admin Manager")]
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -94,7 +94,7 @@ namespace FlightBooking5.Controllers
             return View(employee);
         }
 
-
+        
         private List<int> GetFlightIds()
         {
 
@@ -109,12 +109,12 @@ namespace FlightBooking5.Controllers
             return flightIds;
         }
 
-     
+
 
 
         // GET: Employees/Create
 
-
+        [Authorize(Roles = "Admin Manager")]
         public IActionResult Create()
         {
             List<int> flightIds = GetFlightIds(); // Lấy danh sách FlightId từ nguồn dữ liệu
@@ -158,6 +158,7 @@ namespace FlightBooking5.Controllers
         }
 
         // GET: Employees/Edit/5
+        [Authorize(Roles = "Admin Manager")]
         public async Task<IActionResult> Edit(int? id)
         {
             List<int> flightIds = GetFlightIds(); // Lấy danh sách FlightId từ nguồn dữ liệu
@@ -220,12 +221,13 @@ namespace FlightBooking5.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("EmployeeAssignment", "Admin");
             }
             return View(employee);
         }
 
         // GET: Employees/Delete/5
+        [Authorize(Roles = "Admin Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Employee == null)
@@ -259,7 +261,7 @@ namespace FlightBooking5.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("EmployeeAssignment", "Admin");
         }
 
         private bool EmployeeExists(int id)

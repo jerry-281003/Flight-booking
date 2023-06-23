@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model List<ImageAd>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -113,7 +114,34 @@
         </div>
     </section>
 
-
+    <section id="most-visited">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h2>Advertisement</h2>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div id="owl-mostvisited" class="owl-carousel owl-theme">
+                        @foreach (var imageAd in Model)
+                        {
+                            <div class="item col-md-12">
+                                <div class="visited-item">
+                                    <img src="@Url.Content(imageAd.PhotoPath)" alt="">
+                                    <div class="text-content">
+                                        <h4>@imageAd.Title</h4>
+                                        <span>@imageAd.Content</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+   
 
     <div class="tabs-content" id="weather">
         <div class="container">
@@ -410,7 +438,7 @@
                         <div class="service-icon"></div>
                         <h4>Unique Ideas</h4>
                         <p>
-                            Tomorrow is a little day, sad at some time, the author of the turpish ferment. The mass of the target, the mass of the target, and the various pains will be followed. But let it be true.
+                            Tomorrow is a little day, sad at some time, the author of the turpish ferment. The mass of the target, the mass of the target, and the various pains will be followed. .
                         </p>
                         </a>
                     </div>
@@ -419,7 +447,7 @@
                     <div class="service-item third-service">
                         <div class="service-icon"></div>
                         <h4>Best Support</h4>
-                        <p>"Your Satisfaction is Our Priority: Dedicated Customer Support, Assisting You Every Step of Your Airline Journey!".</p>
+                        <p>"Your Satisfaction is Our Priority: Dedicated Customer Support, Assisting You Every Step of Your Airline Journey!".Best support 24/7,you will satisfied</p>
                         </a>
                     </div>
                 </div>
@@ -432,113 +460,6 @@
    
 
 
-
-
-    <section id="most-visited">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="section-heading">
-                        <h2>Most Visited Places</h2>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div id="owl-mostvisited" class="owl-carousel owl-theme">
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-01.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>River Views</h4>
-                                    <span>New York</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-02.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Lorem ipsum dolor</h4>
-                                    <span>Tokyo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-03.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Proin dignissim</h4>
-                                    <span>Paris</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-04.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Fusce sed ipsum</h4>
-                                    <span>Hollywood</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-02.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Vivamus egestas</h4>
-                                    <span>Tokyo</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-01.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Aliquam elit metus</h4>
-                                    <span>New York</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-03.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Phasellus pharetra</h4>
-                                    <span>Paris</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-04.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>In in quam efficitur</h4>
-                                    <span>Hollywood</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-01.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Sed faucibus odio</h4>
-                                    <span>NEW YORK</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item col-md-12">
-                            <div class="visited-item">
-                                <img src="img/place-02.jpg" alt="">
-                                <div class="text-content">
-                                    <h4>Donec varius porttitor</h4>
-                                    <span>Tokyo</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
 
@@ -571,7 +492,7 @@
     </footer>
 
 
-
+    <hr />
 
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
