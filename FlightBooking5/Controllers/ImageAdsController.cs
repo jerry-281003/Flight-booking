@@ -180,7 +180,7 @@ namespace FlightBooking5.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Ads", "Admin");
         }
 
         private bool ImageAdExists(int id)

@@ -33,7 +33,7 @@ namespace FlightBooking5.Controllers
 			{
 				_roleManager.CreateAsync(new IdentityRole(model.Name)).GetAwaiter().GetResult();
 			}
-			return RedirectToAction("Index");
+			return RedirectToAction("AddRole", "Admin");
 		}
 	}
 }
