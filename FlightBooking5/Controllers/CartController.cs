@@ -67,6 +67,12 @@ namespace FlightBooking5.Controllers
 
             return View("cart", Cart);
         }
+        public IActionResult RemoveAllFromCart()
+        {
+            Cart = new Cart();
+            HttpContext.Session.SetJson("cart", Cart);
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }

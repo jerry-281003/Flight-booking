@@ -2,6 +2,7 @@
 using FlightBooking5.Models;
 using PayPal.Api;
 using FlightBooking5.Data;
+using FlightBooking5.Infrastructure;
 
 namespace FlightBooking5.Controllers
 {
@@ -11,8 +12,8 @@ namespace FlightBooking5.Controllers
         private readonly string _clientSecret = "EBfWuDfcPiJMG87QE_CeWTeWPl84jPIXVlgg4eVRy3WT4927COzpt17seV5D0YpCv8W9PUGmXaUE8eNH";
 
 		private readonly FlightBooking5Context _context;
-
-		public PaymentController(FlightBooking5Context context)
+        
+        public PaymentController(FlightBooking5Context context)
 		{
 			_context = context;
 		}
@@ -76,8 +77,10 @@ namespace FlightBooking5.Controllers
             };
 			// Lưu paymentData vào cơ sở dữ liệu
 			_context.PaymentDetails.Add(paymentData);
-			_context.SaveChanges();
-			return View("PaymentSuccess",paymentData);
+			_context.SaveChanges();           
+            return View("PaymentSuccess",paymentData);
+
+           
         }
     }
 }
